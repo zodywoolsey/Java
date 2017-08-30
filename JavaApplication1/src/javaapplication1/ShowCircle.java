@@ -25,7 +25,7 @@ public class ShowCircle extends Application {
     public void start(Stage primaryStage) {
         //Creates a pane
         Pane pane = new Pane();
-        
+        Scene scene = new Scene(pane,200,200);
         //Button
         Button butt = new Button("ok");
         butt.setTranslateX(50);
@@ -33,26 +33,29 @@ public class ShowCircle extends Application {
         
         // Creates a circle and sets its properties
         Circle circle = new Circle();
-        circle.centerXProperty().bind(pane.widthProperty().divide(3));
-        circle.centerYProperty().bind(pane.heightProperty().divide(2));
-        circle.setRadius(50);
+        //circle.centerXProperty().bind(pane.widthProperty().divide(3));// a dumb way to set the center of the circle by binding it
+        //circle.centerYProperty().bind(pane.heightProperty().divide(2));//  /\   /\    /\     /\    /\   /\    /\
+        circle.setCenterX(pane.getMaxWidth()-100);
+        circle.setCenterY(pane.getMaxHeight()-100);
+        circle.setRadius(5);
         circle.setStroke(Color.BLACK);
-        circle.setFill(Color.WHITE);
+        circle.setFill(Color.BLACK);
+        
         //line?
         Line line = new Line();
-        line.setStartX(EX);
-        line.setStartY(pane.getWidth()-(pane.getWidth()-50));
+        //line.setStartX(200);
+        line.setStartY(pane.getWidth()-100);
         //line.startXProperty().bind(pane.widthProperty().divide(50));
         //line.endXProperty().bind(pane.widthProperty().divide(1.1));
         line.setEndX(pane.getHeight());
         line.setEndY(pane.getWidth());
         
         pane.getChildren().add(circle);
-        pane.getChildren().add(line);
-        pane.getChildren().add(butt);
+        //pane.getChildren().add(line);
+        //pane.getChildren().add(butt);
         
         //Create a scene and place it in the stage
-        Scene scene = new Scene(pane,200,200);
+        
         primaryStage.setTitle("Zody's First Graphic in Java!!!!!!!");
         primaryStage.setScene(scene);
         
@@ -65,14 +68,13 @@ public class ShowCircle extends Application {
         primaryStage.setMaxWidth(1000);//sets max window width
         primaryStage.setMinWidth(300);//sets min window width
         
-        primaryStage.setOpacity(.5f);
+        primaryStage.setOpacity(1f);
+        
         primaryStage.show();
+        System.out.println(pane.getHeight());
         
     }
     public static void main(String[] args){
-        for (int i = 0; i < 10; i++){
-            
-        }
         Application.launch(args);
     }
 }

@@ -16,6 +16,7 @@ public class NonSpecificTestingOfThings {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
     
 }

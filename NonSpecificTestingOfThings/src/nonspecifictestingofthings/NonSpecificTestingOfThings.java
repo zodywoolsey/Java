@@ -16,6 +16,17 @@ public class NonSpecificTestingOfThings {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        double a;
+        double b = 0;
+        double c = 0;
+        a = 100.123456789;
+        System.out.println(a +" "+ b +" "+ c);
+        b = a*100;
+        System.out.println(a +" "+ b +" "+ c);
+        b = (int)b;
+        System.out.println(a +" "+ b +" "+ c);
+        c = (double)(b/100);
+        System.out.println(a +" "+ b +" "+ c);
         
     }
     

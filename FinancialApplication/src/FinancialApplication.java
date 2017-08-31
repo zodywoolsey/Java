@@ -10,19 +10,16 @@ public class FinancialApplication {
         Scanner input = new Scanner(System.in);//creates a usable.... I don't know the word.... to be used for input
         double subT;//variable for subtotal
         double gratI;//variable for gratuity rate input
-        double gratR;//variable for gratuity rate after conversion to a percentage
+        double gratP;//variable for gratuity rate after conversion to a percentage
         double gratuity;//variable for gratuity amount
         double total;//variable for total
-        System.out.print("Please enter the subtotal: ");
-        subT = input.nextDouble();
-        System.out.print("Please enter the gratuity rate: ");
-        gratI = input.nextDouble();
-        gratR = gratI/100;
-        gratuity = gratR*subT;
-        total = gratuity+subT;
-        System.out.println("The gratuity is $" + gratuity + " and the total is $" + total);
-        
-        System.out.println("TEST: " + subT + " " + gratI + ' ' + gratR+' '+gratuity+' '+total);
+        System.out.print("enter in the subtotal");
+        subT = input.nextDouble();// input for subtotal
+        System.out.print("enter in the gratutity");
+        gratI = input.nextDouble();// input for the gratuity rate
+        gratP = gratI/100;// reduces gratuity to a percent
+        gratuity = gratP*subT;// calculates the actual gratuity amount
+        total = gratuity+subT;// calculates the final total
+        System.out.println("The gratutity is " + gratuity + " total is " + total);
     }
-    
 }

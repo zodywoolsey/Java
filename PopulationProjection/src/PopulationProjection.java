@@ -26,7 +26,7 @@ public class PopulationProjection {
         double secs;
         
         // Actual Logic for calculation
-        System.out.println("Enter the number of years: ");//                                    prompt for following input
+        System.out.print("Enter the number of years: ");//                                    prompt for following input
         years = input.nextDouble();//                                                           input for number of years to calculate
         secs = (years*365*24*60*60);//                                                          Calculates number of seconds in a year
         birth = secs/birth;//                                                                   Cacluacates number of births per year

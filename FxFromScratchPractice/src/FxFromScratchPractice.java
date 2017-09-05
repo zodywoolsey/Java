@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;//          \   /
 import javafx.stage.Stage;//            importing all things javafx
 
 public class FxFromScratchPractice extends Application {
+    
     int locx;//These two variables are setup in this class' global space so that they can be used in the button logic to alter the "me" button
     int locy;
     @Override

@@ -8,6 +8,7 @@ public class MadLibs {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String noun1;

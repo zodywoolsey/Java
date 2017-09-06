@@ -18,9 +18,67 @@ public class RockScissorsPaper {
         int scissors; 
         int playerPick;
         int compPick;
+        while (true){
+            
+            System.out.println("Please choose: rock(1), paper(2), scissors(3), or enter (0) to exit the program: ");
+            
+            playerPick = input.nextInt();
+            compPick = (int)(1+Math.random()*3);
+            
+            if (compPick == 1){
+                System.out.println("The computer chose rock. ");
+            }
+            else if(compPick == 2){
+                System.out.println("The computer chose paper. ");
+            }
+            else if(compPick == 3){
+                System.out.println("The computer chose scissors. ");
+            }
+            
+            if (playerPick == 1){
+                System.out.println("You chose rock. ");
+                if (compPick == 1){
+                System.out.println("TIE!");
+                }
+                else if(compPick == 2){
+                    System.out.println("Sorry you lost.");
+                }
+                else if(compPick == 3){
+                    System.out.println("You WIN!!");
+                }
+            }
+            else if(playerPick == 2){
+                System.out.println("You chose paper. ");
+                if (compPick == 1){
+                System.out.println("You WIN!!");
+                }
+                else if(compPick == 2){
+                    System.out.println("TIE!");
+                }
+                else if(compPick == 3){
+                    System.out.println("Sorry you lost.");
+                }
+            }
+            else if(playerPick == 3){
+                System.out.println("You chose scissors. ");
+                if (compPick == 1){
+                System.out.println("Sorry you lost.");
+                }
+                else if(compPick == 2){
+                    System.out.println("You WIN!!");
+                }
+                else if(compPick == 3){
+                    System.out.println("TIE!");
+                }
+            }
+            else if(playerPick == 0){
+                System.out.println("Thank you for playing!");
+                break;
+            }
+            
+        }
         
-        System.out.println("Please choose: rock(1) paper(2) or scissors(3)");
+        System.out.println();
         
     }
-    
 }

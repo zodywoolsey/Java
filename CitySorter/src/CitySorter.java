@@ -26,7 +26,7 @@ public class CitySorter {
         cityTwoC = cityTwo.toUpperCase();
         cityThreeC = cityThree.toUpperCase();
         
-        for(int i = 0; i!=3;i++){
+            
             if (cityOneC.charAt(0) < cityTwoC.charAt(0) && cityOneC.charAt(0) < cityThreeC.charAt(0)){
                 one = cityOne;
             }else if(cityOneC.charAt(0) < cityTwoC.charAt(0) || cityOneC.charAt(0) < cityThreeC.charAt(0)){
@@ -34,6 +34,7 @@ public class CitySorter {
             }else{
                 three = cityOne;
             }
+            
             if (cityTwoC.charAt(0) < cityOneC.charAt(0) && cityTwoC.charAt(0) < cityThreeC.charAt(0)){
                 one = cityTwo;
             }else if(cityTwoC.charAt(0) < cityOneC.charAt(0) || cityTwoC.charAt(0) < cityThreeC.charAt(0)){
@@ -41,6 +42,7 @@ public class CitySorter {
             }else{
                 three = cityTwo;
             }
+            
             if (cityThreeC.charAt(0) < cityOneC.charAt(0) && cityThreeC.charAt(0) < cityTwoC.charAt(0)){
                 one = cityThree;
             }else if(cityThreeC.charAt(0) < cityOneC.charAt(0) || cityThreeC.charAt(0) < cityTwoC.charAt(0)){
@@ -49,7 +51,7 @@ public class CitySorter {
                 three = cityThree;
             }
             
-        }
+            
         System.out.printf("The three cities in alphabetical order are %s %s %s",one,two,three);
     }
     

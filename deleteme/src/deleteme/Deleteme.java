@@ -9,12 +9,16 @@ package deleteme;
  *
  * @author zodywoolsey
  */
+
+import java.util.Scanner;
+
 public class Deleteme {
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++){
-            
-        }
+        Scanner in = new Scanner(System.in);
+        long num = in.nextLong();
+        num = num%10;
+        System.out.println(num);
     }
     
 }

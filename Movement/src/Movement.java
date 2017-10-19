@@ -14,6 +14,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 
 /**
  *
@@ -26,28 +28,36 @@ public class Movement extends Application {
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 300, 250);
         
-        Button but = new Button();
-        but.setText("Click here");
-        but.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                RectanglePane.enlarge();
-            }
-        });
-        
         ArrayList<Rectangle> rect = new ArrayList<>();
         
-        for (int i = 0; i < 500; i++){
+        for (int i = 0; i < 1; i++){
             rect.add(new Rectangle(10,10));
-            rect.get(i).setTranslateX(500-Math.random()*1000);
-            rect.get(i).setTranslateY(500-Math.random()*1000);
+            rect.get(i).setTranslateX(-500);
+            rect.get(i).setTranslateY(100);
             rect.get(i).setFill(Color.BLACK);
             rect.get(i).setStroke(Color.RED);
             rect.get(i).setStrokeWidth(1);
             root.getChildren().add(rect.get(i));
         }
         
+        Button but = new Button();
+        but.setText("Click here");
+        but.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                TranslateTransition[] T = new TranslateTransition[1];
+                T[0].setDuration(Duration.millis(1000));
+                T[0].setNode(rect.get(0));
+                T[0].setByX(500);
+                T[0].setCycleCount(2);
+                T[0].setAutoReverse(false);
+                
+                T[0].play();
+            }
+        });
+        
+      
         
         root.getChildren().add(but);
         primaryStage.setTitle("Hello World!");
@@ -63,19 +73,6 @@ public class Movement extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-    
-    class RectanglePane extends StackPane{
-        private Rectangle rectangle = new Rectangle(20,20);
-        
-        public RectanglePane() {
-            getChildren().add(rectangle);
-        }
-        
-        public void enlarge() {
-            rectangle.setWidth(rectangle.getWidth()+5);
-            rectangle.setHeight(rectangle.getWidth()+5);
-        }
     }
     
 }

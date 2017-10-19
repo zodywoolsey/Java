@@ -16,8 +16,11 @@ public class Deleteme {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        long num = in.nextLong();
-        num = num%10;
+        long num1;
+        long num2;
+        
+        double num = Math.asin(Math.sin(30));
+        
         System.out.println(num);
     }
     

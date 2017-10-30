@@ -27,7 +27,7 @@ import javafx.util.Duration;
  *
  * @author Zody
  */
-public class Squares extends Application {
+public class SquaresThatRotate extends Application {
     
     //All of these are defined as static so that I don't have to think much about the scope.
     static Scanner input = new Scanner(System.in);//input
@@ -36,6 +36,7 @@ public class Squares extends Application {
     static ArrayList<PathTransition> paths = new ArrayList<>();//arraylist to create path transitions to go along with the rectangles
     static ArrayList<Circle> circles = new ArrayList<>();//arraylist of circles to go with the paths
     static int rectSize;//easy to find spot to change the number of generated squares
+    static int rectScale = 10;//adds variable to use for circle radius adjustment
     @Override//Idk
     public void start(Stage primaryStage) {
         
@@ -48,8 +49,6 @@ public class Squares extends Application {
         //Defines the two needed buttons. I could have used a list to reduce line numbers
         Button but = new Button();
         Button play = new Button();
-        Button set = new Button();
-        Button coords = new Button();
         
         //defines the pane and scene early so that the data can be referenced and changed easily
         StackPane root = new StackPane();
@@ -66,62 +65,6 @@ public class Squares extends Application {
                    paths.get(i).play();
                    
                }
-               
-               
-           }
-        });
-        
-        set.setText("set");
-        set.setTranslateX(50);
-        set.setTranslateY(50);
-        set.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent ecent) {
-                for (int i = 0; i < rect.size(); i++){
-                    
-                    double hyp = Math.sqrt(Math.pow(rect.get(i).getTranslateX(), 2)+Math.pow(rect.get(i).getTranslateY(), 2));
-                    System.out.printf("x: %f \ny: %f \nhyp: %f\n", rect.get(i).getTranslateX(), rect.get(i).getTranslateY(), hyp);
-                    
-                    circles.add(new Circle());
-                    
-                    circles.get(i).setRadius(hyp);
-                    
-                    double rot;
-                    
-                    if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() >= 0){
-                        rot = (Math.atan(rect.get(i).getTranslateY()/rect.get(i).getTranslateX())*57.2958);
-                        circles.get(i).setRotate(rot);
-                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() >= 0){
-                        rot = (Math.atan(rect.get(i).getTranslateY()/Math.abs(rect.get(i).getTranslateX()))*57.2958);
-                        circles.get(i).setRotate(rot+90);
-                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() <= 0){
-                        rot = (Math.atan(Math.abs(rect.get(i).getTranslateY())/Math.abs(rect.get(i).getTranslateX()))*57.2958);
-                        circles.get(i).setRotate(rot+180);
-                    }else if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() <= 0){
-                        rot = (Math.atan(Math.abs(rect.get(i).getTranslateY())/rect.get(i).getTranslateX())*57.2958);
-                        circles.get(i).setRotate(rot+270);
-                    }
-                    
-                    paths.add(new PathTransition());
-                    paths.get(i).setPath(circles.get(i));
-                    paths.get(i).setDuration( Duration.millis( 5000 ) );
-                    paths.get(i).setNode(rect.get(i));
-                    paths.get(i).setCycleCount(1);
-                    paths.get(i).setInterpolator(Interpolator.LINEAR);
-                }
-            }
-        });
-        
-        root.getChildren().add(coords);
-        coords.setText("coords");
-        coords.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent event) {
-               
-               for (int i = 0; i < rect.size(); i++){
-                   System.out.printf("x: %f \ny: %f\n", rect.get(i).getTranslateX(), rect.get(i).getTranslateY());
-               }
-               
            }
         });
         
@@ -137,11 +80,11 @@ public class Squares extends Application {
                 
                 //loop to create the rects and set a random color
                 for (int i = 0; i < rectSize; i++){
-                    rect.add(new Rectangle(10,10));
+                    rect.add(new Rectangle(rectScale,rectScale));
                     
                     
-                    
-//                    rect.get(i).setFill(Color.rgb((int)(100+Math.random()*154), (int)(100+Math.random()*154), (int)(100+Math.random()*154)));
+                    //setting random colors
+                    rect.get(i).setFill(Color.rgb((int)(100+Math.random()*154), (int)(100+Math.random()*154), (int)(100+Math.random()*154)));
                 }
                 for (int i = 0; i < rect.size(); i++){
                     rect.get(i).setTranslateX((scene.getWidth()/2)-Math.random()*scene.getWidth());
@@ -155,26 +98,51 @@ public class Squares extends Application {
                     }
                     
                     //Changing color based on quadrant
-                    if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() >= 0){//turns out the math for quad 1 is actually quad 4
+//                    if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() >= 0){//turns out the math for quad 1 is actually quad 4
 //                        rect.get(i).setFill(Color.RED);
-                        root.getChildren().remove(rect.get(i));
-                        rect.remove(i);
-                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() >= 0){//holds true where this is math for quad 3
+//                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() >= 0){//holds true where this is math for quad 3
 //                        rect.get(i).setFill(Color.BLUE);
-                        root.getChildren().remove(rect.get(i));
-                        rect.remove(i);
-                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() <= 0){//quad 2
+//                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() <= 0){//quad 2
 //                        rect.get(i).setFill(Color.GREEN);
-                        root.getChildren().remove(rect.get(i));
-                        rect.remove(i);
-                    }else if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() <= 0){//quad 1
-                        rect.get(i).setFill(Color.BLACK);
-                    }
+//                    }else if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() <= 0){//quad 1
+//                        rect.get(i).setFill(Color.BLACK);
+//                    }
                 }
                 
                 paths.removeAll(paths);
                 circles.removeAll(circles);
                 
+                for (int i = 0; i < rect.size(); i++){
+                    
+                    double hyp = Math.sqrt(Math.pow(rect.get(i).getTranslateX(), 2)+Math.pow(rect.get(i).getTranslateY(), 2));
+                    
+                    circles.add(new Circle());
+                    
+                    circles.get(i).setRadius(hyp+(rectScale/2));
+                    
+                    double rot;
+                    
+                    if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() >= 0){
+                        rot = (Math.toDegrees(Math.asin(rect.get(i).getTranslateY()/hyp)));
+                        circles.get(i).setRotate(rot);
+                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() >= 0){
+                        rot = (Math.toDegrees(Math.asin(rect.get(i).getTranslateY()/Math.abs(hyp))));
+                        circles.get(i).setRotate(rot+90);
+                    }else if (rect.get(i).getTranslateX() <= 0 && rect.get(i).getTranslateY() <= 0){
+                        rot = (Math.toDegrees(Math.asin(Math.abs(rect.get(i).getTranslateY())/Math.abs(hyp))));
+                        circles.get(i).setRotate(rot+180);
+                    }else if (rect.get(i).getTranslateX() >= 0 && rect.get(i).getTranslateY() <= 0){
+                        rot = (Math.toDegrees(Math.asin(Math.abs(rect.get(i).getTranslateX())/hyp)));
+                        circles.get(i).setRotate(rot+270);
+                    }
+                    
+                    paths.add(new PathTransition());
+                    paths.get(i).setPath(circles.get(i));
+                    paths.get(i).setDuration( Duration.millis( 5000 ) );
+                    paths.get(i).setNode(rect.get(i));
+                    paths.get(i).setCycleCount(1);
+                    paths.get(i).setInterpolator(Interpolator.LINEAR);
+                }
                 
             }
         });
@@ -187,7 +155,6 @@ public class Squares extends Application {
         
         root.getChildren().add(but);
         root.getChildren().add(play);
-        root.getChildren().add(set);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         but.setLayoutX(100);

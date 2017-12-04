@@ -1,3 +1,5 @@
+package MainPackage;
+
 
 
 import java.util.ArrayList;
@@ -35,13 +37,13 @@ public class SquaresThatRotate extends Application {
     static ArrayList<Rectangle> rect = new ArrayList<>();//list to create how ever many rectangles I want
     static ArrayList<PathTransition> paths = new ArrayList<>();//arraylist to create path transitions to go along with the rectangles
     static ArrayList<Circle> circles = new ArrayList<>();//arraylist of circles to go with the paths
-    static int rectSize;//easy to find spot to change the number of generated squares
+    static int rectSize = 10;//easy to find spot to change the number of generated squares
     static int rectScale = 10;//adds variable to use for circle radius adjustment
     @Override//Idk
     public void start(Stage primaryStage) {
         
-        System.out.println("How many rects do you want? ");//print for input
-        rectSize = input.nextInt();//input for testing
+        //System.out.println("How many rects do you want? ");//print for input
+        //rectSize = input.nextInt();//input for testing
         
         //This line was used for some random testing
         primaryStage.initStyle(StageStyle.UNIFIED);
